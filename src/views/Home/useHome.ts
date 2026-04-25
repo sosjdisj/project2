@@ -14,9 +14,9 @@ export function useHome() {
     let clearLoadMoreObserver: (() => void) | null = null;
     const currentIndex = ref(0)
     const imgs = [
-        '/src/assets/13.png',
-        '/src/assets/5.jpg',
-        '/src/assets/12.png'
+        '/src/ass/13.png',
+        '/src/ass/5.jpg',
+        '/src/ass/12.png'
     ]
 
     const ImgArr = ref<(HTMLElement | null)[]>([])
@@ -135,6 +135,12 @@ export function useHome() {
         clearScrollObserver = handleScroll((newState) => isShow.value = newState, el)
     }
 
+    const setLoadMoreContainerRefWrapper = (el: Element | null) => {
+        if (!el) return;
+
+        clearLoadMoreObserver = setLoadMoreContainerRef(el, loadMore);
+    }
+
     return {
         imgs,
         articleList,
@@ -143,6 +149,7 @@ export function useHome() {
         setImgRef,
         initHomePage,
         cleanupHomePage,
+        setLoadMoreContainerRefWrapper,
         loadMore,
         setScroll,
     }

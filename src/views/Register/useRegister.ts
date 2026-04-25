@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCounterStore } from '@/stores/counter'
 import { validateLogin } from '@/utils/validation'
@@ -7,6 +7,7 @@ import { post } from '@/api/request'
 import { ElMessage } from 'element-plus'
 import { useFormValidation } from '@/composables/useFormValidation'
 import { saveUserInfo } from '@/utils/helpers'
+import { sha256 } from '@/utils/crypto'
 
 export function useRegister() {
   const router = useRouter()
@@ -18,8 +19,6 @@ export function useRegister() {
     confirmpassword: '',
     phone: ''
   })
-
-  const captchaCode = ref('')
 
   const { errors, updateField, navigateWithClearErrors,
     hasNoErrors } = useFormValidation(Register)
@@ -49,7 +48,14 @@ export function useRegister() {
     handleValidationResult(result)
 
     if (hasNoErrors()) {
-      const result = await post('/auth/register', Register)
+      const hashedPassword = await sha256(Register.password)
+      const registerPayload = {
+        username: Register.username,
+        password: hashedPassword,
+        confirmpassword: hashedPassword,
+        phone: Register.phone
+      }
+      const result = await post('/auth/register', registerPayload)
 
       if (result.success) {
         const { username, avatar, token } = result.data.data
@@ -70,29 +76,9 @@ export function useRegister() {
     navigateWithClearErrors('/login')
   }
 
-  const sendCaptcha = async (callback: () => void) => {
-    if (!Register.phone) return ElMessage.warning('请先填写手机号')
-
-    try {
-      const result = await post('/sendCode', { phone: Register.phone })
-
-      if (result.success) {
-        ElMessage.success('验证码已发送')
-        callback()
-        return;
-      }
-
-      ElMessage.error(result.message || '发送失败')
-
-    } catch (error) {
-      ElMessage.error('发送验证码失败')
-    }
-  }
-
   return {
     errors,
     Register,
-    captchaCode,
     checkPassword,
     GoregisterUser,
     Torouter,
@@ -100,6 +86,5 @@ export function useRegister() {
     handUpdataPassword,
     handUpdataConfirmPassword,
     handUpdataPhone,
-    sendCaptcha,
   }
 }

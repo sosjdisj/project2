@@ -53,7 +53,6 @@ export async function usePaginationCache<T extends Record<string, any>>(
     //拿缓存
     const getCacheItem = store.getCache(CACHE_NAME, key)
     if (getCacheItem) {
-        console.log('缓存')
         return getCacheItem
     }
 
@@ -61,7 +60,6 @@ export async function usePaginationCache<T extends Record<string, any>>(
         { ...data }
     )
     if (resulOne) {
-        console.log('请求')
         return resulOne
     }
 

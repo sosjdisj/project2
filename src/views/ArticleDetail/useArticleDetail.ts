@@ -6,11 +6,9 @@ import { CACHE_KEYS } from '@/constants/cacheKeys'
 import { usePageControl } from '@/composables/usePageControl'
 import { scrollToComment } from '@/utils/helpers'
 import type Remark from '@/components/内容复用组件/Remark.vue'
-import { useCounterStore } from '@/stores/counter'
 
 export function useArticleDetail(remarkComponentRef: Ref<InstanceType<typeof Remark> | null>) {
     const route = useRoute()
-    const store = useCounterStore()
     const comments = ref<ArticleComment[]>([])
 
     const queryData = computed(() => {
@@ -56,41 +54,11 @@ export function useArticleDetail(remarkComponentRef: Ref<InstanceType<typeof Rem
 
     const { page, nextPage } = usePageControl()
 
-    const handleUpdateDataLike = (updateLikes: number, isLiked: boolean) => {
+    const handleUpdateDataLike = (updateLikes: number) => {
         articleData.value.likes = updateLikes
-        articleData.value.isLiked = isLiked
-        // 同步更新缓存 - 注意缓存结构是 { detail: {...}, prev: {...}, next: {...} }
-        if (queryData.value.id) {
-            // 先获取当前缓存，进行深合并
-            const currentCache = store.getCache(CACHE_KEYS.ARTICLE_DATA, queryData.value.id)
-            if (currentCache) {
-                store.updateCacheSync(CACHE_KEYS.ARTICLE_DATA, queryData.value.id, {
-                    detail: {
-                        ...currentCache.detail,
-                        likes: updateLikes,
-                        isLiked: isLiked
-                    }
-                })
-            }
-        }
     }
-    const handleUpdateDataFavorites = (updateFavorites: number, isCollected: boolean) => {
+    const handleUpdateDataFavorites = (updateFavorites: number) => {
         articleData.value.collects = updateFavorites
-        articleData.value.isCollected = isCollected
-        // 同步更新缓存 - 注意缓存结构是 { detail: {...}, prev: {...}, next: {...} }
-        if (queryData.value.id) {
-            // 先获取当前缓存，进行深合并
-            const currentCache = store.getCache(CACHE_KEYS.ARTICLE_DATA, queryData.value.id)
-            if (currentCache) {
-                store.updateCacheSync(CACHE_KEYS.ARTICLE_DATA, queryData.value.id, {
-                    detail: {
-                        ...currentCache.detail,
-                        collects: updateFavorites,
-                        isCollected: isCollected
-                    }
-                })
-            }
-        }
     }
 
     const fetchArticleData = async () => {
@@ -106,8 +74,7 @@ export function useArticleDetail(remarkComponentRef: Ref<InstanceType<typeof Rem
 
         if (!articleDataCache.detail) return;
 
-        // 创建副本，避免直接修改缓存对象
-        articleData.value = { ...articleDataCache.detail }
+        articleData.value = articleDataCache.detail
         prev.value = articleDataCache.prev
         next.value = articleDataCache.next
 

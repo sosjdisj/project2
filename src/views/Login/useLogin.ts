@@ -6,6 +6,7 @@ import { useCounterStore } from '@/stores/counter'
 import { ElMessage } from 'element-plus'
 import { useFormValidation } from '@/composables/useFormValidation'
 import { saveUserInfo } from '@/utils/helpers'
+import { sha256 } from '@/utils/crypto'
 
 export function useLogin() {
   const router = useRouter()
@@ -41,7 +42,12 @@ export function useLogin() {
 
     if (!hasNoErrors()) return
 
-    const bool = await post('/auth/login', LoginData)
+    const hashedPassword = await sha256(LoginData.password)
+    const loginPayload = {
+      username: LoginData.username,
+      password: hashedPassword
+    }
+    const bool = await post('/auth/login', loginPayload)
     if (bool.success) {
       const { username, avatar, token } = bool.data.data
 

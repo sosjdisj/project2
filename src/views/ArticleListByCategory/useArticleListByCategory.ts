@@ -59,12 +59,28 @@ export function useArticleListByCategory() {
         isLoading.value = false
 
     }
+    const setLoadMoreContainerRefWrapper = (el: HTMLElement | null) => {
+        if (!el) return;
 
+        clearObserver = setLoadMoreContainerRef(el, fetchArticleCategoryTagList)
+    }
+    const cleanupuseArticleListByCategory = () => {
+        if (clearObserver) {
+            clearObserver()
+            clearObserver = null
+        }
+    }
+    const loadMore = async () => {
+        await fetchArticleCategoryTagList();
+    }
     return {
         queryData,
         articleList,
         categoryTab,
         isFinished,
         fetchArticleCategoryTagList,
+        setLoadMoreContainerRefWrapper,
+        cleanupuseArticleListByCategory,
+        loadMore
     }
 }

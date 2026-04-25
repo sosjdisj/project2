@@ -49,18 +49,20 @@
 </template>
 
 <script setup lang="ts">
-    import { onMounted } from 'vue';
+    import { onMounted, onUnmounted } from 'vue';
     import { useSearchResult } from './useSearchResult';
     import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
     import { formatDate } from '@/utils/helpers'
 
     const { queryData, searchResult, articles, isFinished,
-        handArticleDetail, loadSearchArticleList } = useSearchResult()
+        handArticleDetail, loadSearchArticleList, clear } = useSearchResult()
 
     onMounted(async () => {
         await loadSearchArticleList()
     })
-
+    onUnmounted(() => {
+        clear()
+    })
 </script>
 
 <style lang="less" scoped>

@@ -2,7 +2,6 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Mark } from '@/types/index'
 import { get } from '@/api/request'
-import { socket } from '@/socket'
 
 // 缓存项类型：包含数据和缓存时间
 interface CacheItem<T = any> {
@@ -81,33 +80,14 @@ export const useCounterStore = defineStore('counter', () => {
     return;
   }
 
-  // 同步修改缓存
-  const updateCacheSync = <T extends Record<string, any>>(
-    type: string,
-    key: string,
-    newData: Partial<T>  // 支持部分更新
-  ) => {
-    if (!caches.value[type]) return false;
-
-    const cacheItem = caches.value[type].get(key)
-    if (!cacheItem) return false;
-
-    caches.value[type].set(key, {
-      data: { ...cacheItem.data, ...newData },
-      timestamp: Date.now()
-    })
-
-    return true;
-  }
-
   // 初始化监听：这些监听器在整个应用生命周期内只运行一次
   const initSocketListeners = () => {
 
-    if (isInitialized.value) return;
-    // A. 监听全站人数
-    socket.on('total online', (count: number) => {
-      totalOnline.value = count;
-    });
+    // if (isInitialized.value) return;
+    // // A. 监听全站人数
+    // socket.on('total online', (count: number) => {
+    //   totalOnline.value = count;
+    // });
 
     isInitialized.value = true;
   };
@@ -115,6 +95,6 @@ export const useCounterStore = defineStore('counter', () => {
   return {
     avatar, username, header, token, totalOnline,
     signature,
-    getCache, setCache, initSocketListeners, updateCacheSync
+    getCache, setCache, initSocketListeners
   }
 })

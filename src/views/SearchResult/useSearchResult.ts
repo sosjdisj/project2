@@ -25,6 +25,7 @@ export function useSearchResult() {
     const articles = ref<ArticleCard[]>([]);
 
     const key = computed(() => `${queryData.value}${page.value}`)
+    let clearScrollObserver: (() => void) | null = null;
 
     const handArticleDetail = (id: string) => {
         router.push({
@@ -36,6 +37,7 @@ export function useSearchResult() {
     }
 
     const loadSearchArticleList = async () => {
+        // if (queryData.value) {
         if (isLoading.value || isFinished.value) return;
 
         isLoading.value = true
@@ -46,27 +48,25 @@ export function useSearchResult() {
             queryData.value ?
                 { page: page.value, keyword: queryData.value } : { page: page.value }
         )
-
         if (articlesData.list.length === 0) {
             isFinished.value = true
-            isLoading.value = false
             return;
         }
-
         articles.value = [...articles.value, ...articlesData.list]
 
         searchResult.value = articlesData.total
-        
-        if (articles.value.length >= articlesData.total) {
-            isFinished.value = true
-        }
-        
         nextPage()
 
         isLoading.value = false
 
-    }
 
+    }
+    const clear = () => {
+        if (clearScrollObserver) {
+            clearScrollObserver()
+            clearScrollObserver = null
+        }
+    }
     return {
         queryData,
         searchResult,
@@ -74,5 +74,6 @@ export function useSearchResult() {
         isFinished,
         handArticleDetail,
         loadSearchArticleList,
+        clear
     }
 }
