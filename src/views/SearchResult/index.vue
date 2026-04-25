@@ -51,7 +51,7 @@
 <script setup lang="ts">
     import { onMounted, onUnmounted } from 'vue';
     import { useSearchResult } from './useSearchResult';
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue';
     import { formatDate } from '@/utils/helpers'
 
     const { queryData, searchResult, articles, isFinished,

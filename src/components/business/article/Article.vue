@@ -43,14 +43,14 @@
 <script setup lang="ts">
     import { ChatDotRound } from '@element-plus/icons-vue'
     import { onMounted, onUnmounted, ref } from 'vue'//用于定义异步组件的函数
-    import PascalCase from '@/components/Home/Rigth/PascalCase.vue'
-    import SidebarNoticePanel from '@/components/Home/Rigth/SidebarNoticePanel.vue'
-    import DigitalClock from '@/components/Home/Rigth/DigitalClock.vue'
-    import RandomArticlePanel from '@/components/Home/Rigth/RandomArticlePanel.vue'
-    import HotTagSection from '@/components/Home/Rigth/HotTagSection.vue';
+    import PascalCase from '@/components/business/home/Rigth/PascalCase.vue'
+    import SidebarNoticePanel from '@/components/business/home/Rigth/SidebarNoticePanel.vue'
+    import DigitalClock from '@/components/business/home/Rigth/DigitalClock.vue'
+    import RandomArticlePanel from '@/components/business/home/Rigth/RandomArticlePanel.vue'
+    import HotTagSection from '@/components/business/home/Rigth/HotTagSection.vue';
     import { initHomeRightScrollAnimations } from '@/utils/helpers'
     import type { Article } from '@/types/index'
-    import StatsPanel from '@/components/Home/Rigth/StatsPanel.vue'
+    import StatsPanel from '@/components/business/home/Rigth/StatsPanel.vue'
 
     const articleList = ref<Article[]>([])
 

@@ -8,7 +8,7 @@
 <script setup lang="ts">
   import { onUnmounted } from 'vue'
   import { setLoadMoreContainerRef } from '@/utils/helpers'
-  import LoadMore from './LoadMore.vue'
+  import LoadMore from '@/components/ui/LoadMore.vue'
 
   const props = defineProps<{
     loadMore: () => Promise<void>

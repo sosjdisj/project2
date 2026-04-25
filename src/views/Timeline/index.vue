@@ -59,7 +59,7 @@
     import { onMounted, onUnmounted } from 'vue'
     import { useTimeline } from './useTimeline'
     import { formatDate } from '@/utils/helpers'
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue'
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue'
 
     const { currentBgImage, timelienList, isFinished, defaultBgImage,
         setContainerRef, initTimeline, cleanup, handArticleData, loadMore

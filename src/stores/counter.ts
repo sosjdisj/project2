@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Mark } from '@/types/index'
 import { get } from '@/api/request'
+import { socket } from '@/socket'
 
 // 缓存项类型：包含数据和缓存时间
 interface CacheItem<T = any> {
@@ -83,11 +83,11 @@ export const useCounterStore = defineStore('counter', () => {
   // 初始化监听：这些监听器在整个应用生命周期内只运行一次
   const initSocketListeners = () => {
 
-    // if (isInitialized.value) return;
-    // // A. 监听全站人数
-    // socket.on('total online', (count: number) => {
-    //   totalOnline.value = count;
-    // });
+    if (isInitialized.value) return;
+    // A. 监听全站人数
+    socket.on('total online', (count: number) => {
+      totalOnline.value = count;
+    });
 
     isInitialized.value = true;
   };

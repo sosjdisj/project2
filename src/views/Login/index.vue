@@ -2,7 +2,7 @@
     <div class="login">
 
         <div class="bg-image">
-            <img src="/src/ass/【哲风壁纸】8k-个性背景.png" alt="">
+            <img src="/src/assets/【哲风壁纸】8k-个性背景.png" alt="">
         </div>
 
         <div class="login-right">
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-    import FormInput from '@/components/FormInput.vue';
+    import FormInput from '@/components/ui/FormInput.vue';
     import { useLogin } from './useLogin';
 
     const { errors, handUpdataUsername, handUpdataPassword, ToregisterUser, checkPassword, handleLogin } = useLogin()
@@ -44,7 +44,7 @@
 </script>
 
 <style lang="less" scoped>
-    @import '/src/styls/bg-image.less';
+    @import '/src/styles/bg-image.less';
 
     @purple-primary: #764ba2;
     @gradient-pink: #f093fb;

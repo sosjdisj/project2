@@ -112,7 +112,7 @@
 
 <script setup lang="ts">
     import { onMounted, onUnmounted, ref, watch } from 'vue';
-    import MarkdownBubble from '@/components/MarkdownBubble .vue';
+    import MarkdownBubble from '@/components/ui/MarkdownBubble .vue';
     import {
         Lightning,
         Expand,

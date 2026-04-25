@@ -3,7 +3,7 @@
         <input v-model="captchaValue" type="text" placeholder="验证码" maxlength="6" class="captcha-input"
             autocomplete="one-time-code">
 
-        <button class="captcha-btn-custom" @click="handleSendVerificationCode" :disabled="isValid"
+        <button type="button" class="captcha-btn-custom" @click="handleSendVerificationCode" :disabled="isValid"
             :class="{ 'is-counting': isValid }">
             {{ countdownText }}
         </button>

@@ -5,7 +5,7 @@ import { setLoadMoreContainerRef, usePaginationCache } from '@/utils/helpers'
 import { CACHE_KEYS } from '@/constants/cacheKeys'
 import { usePageControl } from '@/composables/usePageControl'
 import { scrollToComment } from '@/utils/helpers'
-import type Remark from '@/components/内容复用组件/Remark.vue'
+import type Remark from '@/components/business/article/Remark.vue'
 
 export function useArticleDetail(remarkComponentRef: Ref<InstanceType<typeof Remark> | null>) {
     const route = useRoute()

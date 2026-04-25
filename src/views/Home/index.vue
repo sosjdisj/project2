@@ -55,21 +55,21 @@
 </template>
 
 <script setup lang="ts">
-    import Animation from '@/components/Home/ArticleList/Animation.vue'
-    import TypeWriterEffect from '@/components/Home/TypeWriterEffect.vue'
-    import TextGlitch from '@/components/Home/TextGlitch.vue'
-    import ArticleList from '@/components/Home/ArticleList/ArticleList.vue';
-    import ArticleListHeader from '@/components/Home/ArticleList/ArticleListHeader.vue';
-    import PascalCase from '@/components/Home/Rigth/PascalCase.vue'
-    import SidebarNoticePanel from '@/components/Home/Rigth/SidebarNoticePanel.vue'
-    import DigitalClock from '@/components/Home/Rigth/DigitalClock.vue'
-    import RandomArticlePanel from '@/components/Home/Rigth/RandomArticlePanel.vue'
-    import HotTagSection from '@/components/Home/Rigth/HotTagSection.vue';
-    import StatsPanel from '@/components/Home/Rigth/StatsPanel.vue'
+    import Animation from '@/components/business/home/ArticleList/Animation.vue'
+    import TypeWriterEffect from '@/components/business/home/TypeWriterEffect.vue'
+    import TextGlitch from '@/components/business/home/TextGlitch.vue'
+    import ArticleList from '@/components/business/home/ArticleList/ArticleList.vue';
+    import ArticleListHeader from '@/components/business/home/ArticleList/ArticleListHeader.vue';
+    import PascalCase from '@/components/business/home/Rigth/PascalCase.vue'
+    import SidebarNoticePanel from '@/components/business/home/Rigth/SidebarNoticePanel.vue'
+    import DigitalClock from '@/components/business/home/Rigth/DigitalClock.vue'
+    import RandomArticlePanel from '@/components/business/home/Rigth/RandomArticlePanel.vue'
+    import HotTagSection from '@/components/business/home/Rigth/HotTagSection.vue';
+    import StatsPanel from '@/components/business/home/Rigth/StatsPanel.vue'
     import { useHome } from './useHome';
     import { onMounted, onUnmounted, } from 'vue';
-    import BackToTopTrigger from '@/components/BackToTopTrigger.vue';
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
+    import BackToTopTrigger from '@/components/ui/BackToTopTrigger.vue';
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue';
 
     const { imgs, articleList, isFinished, isShow, setImgRef, initHomePage,
         cleanupHomePage, loadMore, setScroll } = useHome()

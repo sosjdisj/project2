@@ -34,14 +34,14 @@
 
 <script setup lang="ts">
     import { onMounted, onUnmounted, ref } from 'vue';
-    import Articlen from '@/components/内容复用组件/Article.vue'
-    import ArticleHeader from '@/components/内容复用组件/ArticleHeader.vue';
-    import Statement from '@/components/内容复用组件/Statement.vue'
-    import LikeButton from '@/components/内容复用组件/LikeButton.vue'
-    import Remark from '@/components/内容复用组件/Remark.vue'
-    import CommentCard from '@/components/内容复用组件/CommentCard.vue'
-    import ReadingStatus from '@/components/ReadingStatus.vue';
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
+    import Articlen from '@/components/business/article/Article.vue'
+    import ArticleHeader from '@/components/business/article/ArticleHeader.vue';
+    import Statement from '@/components/business/article/Statement.vue'
+    import LikeButton from '@/components/business/article/LikeButton.vue'
+    import Remark from '@/components/business/article/Remark.vue'
+    import CommentCard from '@/components/business/article/CommentCard.vue'
+    import ReadingStatus from '@/components/business/ReadingStatus.vue';
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue';
     import { useArticleDetail } from './useArticleDetail';
 
     const remarkComponentRef = ref<InstanceType<typeof Remark> | null>(null);

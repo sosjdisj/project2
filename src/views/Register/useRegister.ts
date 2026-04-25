@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCounterStore } from '@/stores/counter'
 import { validateLogin } from '@/utils/validation'
@@ -19,6 +19,8 @@ export function useRegister() {
     confirmpassword: '',
     phone: ''
   })
+
+  const captchaCode = ref('')
 
   const { errors, updateField, navigateWithClearErrors,
     hasNoErrors } = useFormValidation(Register)
@@ -52,8 +54,8 @@ export function useRegister() {
       const registerPayload = {
         username: Register.username,
         password: hashedPassword,
-        confirmpassword: hashedPassword,
-        phone: Register.phone
+        phone: Register.phone,
+        code: captchaCode.value,
       }
       const result = await post('/auth/register', registerPayload)
 
@@ -72,16 +74,35 @@ export function useRegister() {
     }
   }
 
+  const sendCaptcha = async (countdownCallback: () => void) => {
+    if (!Register.phone) {
+      ElMessage.warning('请先输入手机号')
+      return
+    }
+
+    try {
+      const result = await post('/sendCode', { phone: Register.phone })
+      if (result.success) {
+        ElMessage.success('验证码已发送')
+        countdownCallback()
+      }
+    } catch (error) {
+      ElMessage.error('验证码发送失败，请稍后重试')
+    }
+  }
+
   const Torouter = () => {
     navigateWithClearErrors('/login')
   }
 
   return {
     errors,
+    captchaCode,
     Register,
     checkPassword,
     GoregisterUser,
     Torouter,
+    sendCaptcha,
     handUpdataUsername,
     handUpdataPassword,
     handUpdataConfirmPassword,

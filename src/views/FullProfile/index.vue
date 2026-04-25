@@ -68,13 +68,13 @@
 </template>
 
 <script lang="ts" setup>
-    import PascalCase from '@/components/Home/Rigth/PascalCase.vue';
-    import UnfavoriteConfirm from '@/components/UnfavoriteConfirm.vue';
+    import PascalCase from '@/components/business/home/Rigth/PascalCase.vue';
+    import UnfavoriteConfirm from '@/components/ui/UnfavoriteConfirm.vue';
     import router from '@/router';
     import { useFullProfile } from '@/views/FullProfile/useFullProfile'
     import { onMounted } from 'vue';
     import { formatDate } from '@/utils/helpers'
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue';
 
     const { collectedArticles, confirmVisible, confirmItem, keyword,
         getCollectedArticles, goToArticle, showUnfavoriteConfirm, confirmUnfavorite,

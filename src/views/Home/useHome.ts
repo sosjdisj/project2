@@ -14,9 +14,9 @@ export function useHome() {
     let clearLoadMoreObserver: (() => void) | null = null;
     const currentIndex = ref(0)
     const imgs = [
-        '/src/ass/13.png',
-        '/src/ass/5.jpg',
-        '/src/ass/12.png'
+        '/src/assets/13.png',
+        '/src/assets/5.jpg',
+        '/src/assets/12.png'
     ]
 
     const ImgArr = ref<(HTMLElement | null)[]>([])

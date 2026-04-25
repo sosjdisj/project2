@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import Heade from './components/Header/首页导航栏.vue'
-  import './styles/初始化.css'
+  import MainNavbar from './components/layout/MainNavbar.vue'
+  import '@/styles/初始化.css'
   import { useCounterStore } from '@/stores/counter'
   import { onMounted, computed } from 'vue'
   import { useRoute } from 'vue-router'
-  import OnlineStatus from './components/OnlineStatus.vue'
-  import CollapseButton from './components/CollapseButton.vue'
+  import OnlineStatus from '@/components/business/OnlineStatus.vue'
+  import CollapseButton from '@/components/ui/CollapseButton.vue'
   import { get } from '@/api/request'
   import { saveUserInfo } from '@/utils/helpers'
 
@@ -36,7 +36,7 @@
 </script>
 
 <template>
-  <Heade />
+  <MainNavbar />
 
   <OnlineStatus />
 

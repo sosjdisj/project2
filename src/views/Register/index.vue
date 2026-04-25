@@ -2,7 +2,7 @@
     <div class="register-page">
 
         <div class="bg-image">
-            <img src="/src/ass/【哲风壁纸】6K-6K画质.png" alt="">
+            <img src="/src/assets/【哲风壁纸】6K-6K画质.png" alt="">
         </div>
 
         <form class="register-card" @submit.prevent="GoregisterUser">
@@ -37,8 +37,8 @@
 
 
 <script setup lang="ts">
-    import FormInput from '@/components/FormInput.vue';
-    import CaptchaInput from '@/components/CaptchaInput.vue';
+    import FormInput from '@/components/ui/FormInput.vue';
+    import CaptchaInput from '@/components/ui/CaptchaInput.vue';
     import { useRegister } from './useRegister';
 
     const { errors, captchaCode, checkPassword, GoregisterUser, Torouter,
@@ -48,7 +48,7 @@
 </script>
 
 <style lang="less" scoped>
-    @import '/src/styls/bg-image.less';
+    @import '/src/styles/bg-image.less';
 
     // 变量提取，保持设计系统一致
     @bg-dark: #1a202c;
@@ -93,34 +93,6 @@
                 flex-direction: column;
                 gap: 4px; // 配合 FormInput 内部的间距
             }
-
-            // // 验证码特化样式
-            // .captcha-row {
-            //     display: flex;
-            //     align-items: flex-start;
-            //     justify-content: space-between;
-            //     width: 300px;
-            //     gap: 12px;
-            //     margin-top: 10px;
-
-            //     .captcha-input {
-            //         flex: 1;
-            //         min-width: 0;
-            //         height: 42px;
-            //         padding: 0 15px;
-            //         background: rgba(255, 255, 255, 0.05);
-            //         border: 1.5px solid rgba(255, 255, 255, 0.1);
-            //         border-radius: 8px;
-            //         color: #fff;
-            //         outline: none;
-            //         transition: all 0.3s;
-
-            //         &:focus {
-            //             border-color: @primary-blue;
-            //             background: rgba(255, 255, 255, 0.1);
-            //         }
-            //     }
-            // }
 
             .submit-btn {
                 width: 300px;

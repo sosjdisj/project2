@@ -34,8 +34,8 @@
 
 
 <script setup lang="ts">
-    import FormInput from '@/components/FormInput.vue';
-    import CaptchaInput from '@/components/CaptchaInput.vue';
+    import FormInput from '@/components/ui/FormInput.vue';
+    import CaptchaInput from '@/components/ui/CaptchaInput.vue';
     import { useReset } from './useReset';
 
     const { errors, handUpdataUsername, checkField, Torouter, handleReset } = useReset()

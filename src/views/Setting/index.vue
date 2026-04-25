@@ -8,8 +8,8 @@
 </template>
 <script lang="ts" setup>
     import { onMounted } from 'vue';
-    import Profile from '@/components/Profile.vue'
-    import ProfileSettingsCard from '@/components/ProfileSettingsCard.vue'
+    import Profile from '@/components/business/Profile.vue'
+    import ProfileSettingsCard from '@/components/business/ProfileSettingsCard.vue'
     import { useSetting } from '@/views/Setting/useSetting'
 
     const { userData, handProfile, handleAvatarUpload, fetchSettings } = useSetting()

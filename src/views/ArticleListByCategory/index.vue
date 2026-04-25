@@ -48,7 +48,7 @@ t'sts<template>
     import { onMounted, onUnmounted } from 'vue'
     import { useArticleListByCategory } from './useArticleListByCategory'
     import { Collection } from '@element-plus/icons-vue';
-    import InfiniteScrollContainer from '@/components/InfiniteScrollContainer.vue';
+    import InfiniteScrollContainer from '@/components/business/InfiniteScrollContainer.vue';
 
     const { queryData, articleList, categoryTab, isFinished, fetchArticleCategoryTagList } = useArticleListByCategory()
 
